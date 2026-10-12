@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('categoryFilter').addEventListener('change', loadSavedVideos);
   document.getElementById('statusFilter').addEventListener('change', loadSavedVideos);
   document.getElementById('categoryForm').addEventListener('submit', addCategory);
+  document.getElementById('pickVideoBtn').addEventListener('click', pickRandomVideo);
 
   document.getElementById('saveBtn').addEventListener('click', async () => {
     const saveButton = document.getElementById('saveBtn');
@@ -98,6 +99,7 @@ function loadSavedVideos() {
 
   chrome.storage.local.get({ watchLater: [], categories: DEFAULT_CATEGORIES }, (result) => {
     const savedVideos = result.watchLater;
+    document.getElementById('pickVideoBtn').disabled = savedVideos.length === 0;
     const categories = normalizeCategories(result.categories);
     renderCategoryControls(categories);
     const categoryFilter = document.getElementById('categoryFilter').value;
@@ -189,6 +191,22 @@ function loadSavedVideos() {
       listContainer.appendChild(item);
     });
   });
+}
+
+async function pickRandomVideo() {
+  const pickButton = document.getElementById('pickVideoBtn');
+  pickButton.disabled = true;
+  try {
+    const { watchLater: savedVideos } = await chrome.storage.local.get({ watchLater: [] });
+    if (savedVideos.length === 0) return;
+
+    const video = savedVideos[Math.floor(Math.random() * savedVideos.length)];
+    await chrome.tabs.create({ url: video.url });
+  } catch (error) {
+    alert(error.message || 'Could not open a randomly selected video. Please try again.');
+  } finally {
+    loadSavedVideos();
+  }
 }
 
 function normalizeCategories(categories) {

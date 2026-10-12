@@ -10,6 +10,7 @@ A lightweight Chrome extension for saving YouTube videos to a personal watch-lat
 - Delete categories; videos assigned to a deleted category are moved to **Uncategorized**.
 - Search by title, channel, category tag, or duration.
 - Filter by category and watched status.
+- Pick a random video from all saved videos and open it in a new tab.
 - Mark saved videos as watched or unwatched, and remove videos from the list.
 - Keep saved videos and categories in Chrome local storage.
 
@@ -40,6 +41,10 @@ Use **Manage categories** to add or delete categories. Category names are limite
 ### Search and filter
 
 Expand **Search and filters** to search saved videos by **All fields**, **Title**, **Channel**, **Tag**, or **Duration**, and narrow results by category or watched status. Searches and filters can be combined.
+
+### Pick a video
+
+Choose **Pick one for me** to open a randomly selected video from all saved videos in a new tab. The selection is not limited by the current search or filters.
 
 ### Update a saved video
 
