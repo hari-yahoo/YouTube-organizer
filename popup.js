@@ -238,7 +238,7 @@ function renderCategoryControls(categories) {
     const removeButton = document.createElement('button');
     removeButton.className = 'remove-category-btn';
     removeButton.type = 'button';
-    removeButton.textContent = '×';
+    removeButton.textContent = 'x';
     removeButton.setAttribute('aria-label', `Delete category ${category}`);
     removeButton.addEventListener('click', () => deleteCategory(category));
     chip.append(label, removeButton);
