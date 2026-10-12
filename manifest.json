@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Custom YouTube Watch Later",
+  "version": "1.0",
+  "description": "Saves YouTube videos to a custom watch later list.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.youtube.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
